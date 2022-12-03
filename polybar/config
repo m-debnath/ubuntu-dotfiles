@@ -1,0 +1,386 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+background-trans = #001a1a1a
+background = #001a1a1a
+background-alt = #191919
+background-inactive = #4d1a1a1a
+foreground = #ffffff
+foreground-alt = #ffffff
+primary = #194E84
+primary-alt = #1B8152
+secondary = #ffffff
+alert = #A54242
+disabled = #707880
+
+[bar/mybar]
+width = 100%
+height = 22pt
+radius = 0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2pt
+line-color = #184c85
+
+border-left-size = 8pt
+border-right-size = 8pt
+border-top-size = 0pt
+border-bottom-size = 0pt
+border-left-color = ${colors.background-trans}
+border-right-color = ${colors.background-trans}
+
+font-0 = "SF Pro Display Regular:style=Regular:size=9;2"
+font-1 = "JetBrainsMono Nerd Font:style=Normal:size=9;2"
+font-2 = "Font Awesome 5 Free:style=Solid:size=9;2"
+font-3 = "Font Awesome 5 Brands:style=Regular:size=9;2"
+font-4 = "FontAwesome:style=Regular:size=10;2"
+font-5 = "Ubuntu Nerd Font:style=Regular:size=12;3"
+font-6 = "Ubuntu Nerd Font:style=Regular:size=10;2"
+
+modules-left = jgmenu sep sep xworkspaces sep sep xwindowicon
+modules-center = now_playing
+modules-right = xkeyboard sep sep sep-primary cpu memory check_update sep-primary sep sep date sep sep sep-primary pulseaudio mic-con parcellite warp-con wlan powermenu
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+enable-ipc = true
+
+tray-position = none
+tray-padding = 6
+tray-background = ${colors.primary-alt}
+
+wm-restack = bspwm
+
+override-redirect = true
+
+[module/sep]
+type = custom/text
+content = " "
+content-background = ${colors.background-trans}
+
+[module/sep-primary]
+type = custom/text
+content = " "
+content-background = ${colors.primary}
+
+[module/sep-primary-alt]
+type = custom/text
+content = " "
+content-background = ${colors.primary-alt}
+
+[module/parcellite]
+type = custom/text
+content = %{T3}%{T-}
+content-foreground = ${colors.foreground}
+click-left= "xdotool key super+v"
+content-background = ${colors.primary}
+content-padding = 2
+
+[module/jgmenu]
+type = custom/script
+interval = 120
+exec = echo ""
+label = %{T3}%output%%{T-}
+click-left = "jgmenu_run > /dev/null 2>&1 &"
+format-background = ${colors.background-alt}
+format-foreground = ${colors.foreground}
+format-padding = 2
+
+[module/xworkspaces]
+type = internal/xworkspaces
+
+label-active = %name%
+label-active-background = ${colors.background-alt}
+label-active-padding = 2
+
+label-occupied = %name%
+label-occupied-padding = 2
+label-occupied-background = ${colors.background-inactive}
+
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = ""
+label-empty-foreground = ${colors.disabled}
+label-empty-padding = 2
+
+
+[module/xwindowicon]
+type = custom/script
+exec = polybar-xwindow-icon.sh
+label = "%output% "
+tail = true
+format-background = ${colors.background-alt}
+format-padding = 2
+
+[module/mic-con]
+type = custom/script
+interval = 1
+exec = polybar-mic-connected.sh
+label = %{T3}%output%%{T-}
+label-foreground = ${colors.foreground}
+format-background = ${colors.primary}
+format-padding = 2
+
+[module/warp-con]
+type = custom/script
+interval = 1
+exec = polybar-warp-connected.sh
+label = %{T4}%output%%{T-}
+label-foreground = ${colors.foreground}
+; click-left = warp-cli disconnect && sudo systemctl restart systemd-resolved.service
+click-left = warp-cli disconnect
+format-background = ${colors.primary}
+format-padding = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+warn-percentage = 95
+format-prefix = %{T3}%{T-}
+label = %percentage:3%%
+format-background = ${colors.primary}
+format-padding = 1
+
+[module/gpu-usage]
+type = custom/script
+interval = 2
+exec = polybar-gpu-stats.py USAGE
+format-prefix = %{T3}%{T-}
+label = %output:4%%
+format-background = ${colors.primary}
+format-padding = 1
+
+[module/memory]
+type = internal/memory
+interval = 1
+format-prefix = %{T3}%{T-}
+label = %percentage_used:3%%
+format-background = ${colors.primary}
+format-padding = 1
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{T3}%{T-} %free%
+label-mounted-underline= ${colors.primary}
+
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.disabled}
+format-mounted = <label-mounted>
+format-mounted-padding = 1
+format-mounted-background = ${colors.primary}
+format-unmounted = <label-unmounted>
+format-unmounted-padding = 1
+format-unmounted-background = ${colors.primary}
+
+[module/homefilesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /home
+
+label-mounted = %{T3}%{T-} %free%
+label-mounted-underline= ${colors.primary}
+
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.disabled}
+format-mounted = <label-mounted>
+format-mounted-padding = 1
+format-mounted-background = ${colors.primary}
+format-unmounted = <label-unmounted>
+format-unmounted-padding = 1
+format-unmounted-background = ${colors.primary}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+use-ui-max = false
+interval = 2
+
+format-volume-prefix = %{T3} %{T-}
+format-volume-prefix-foreground = ${colors.foreground}
+
+label-volume = %percentage%%
+
+format-volume = <label-volume>
+format-volume-background = ${colors.primary}
+format-volume-padding = 1
+
+format-muted-prefix = %{T3} %{T-}
+format-muted-prefix-foreground = ${colors.disabled}
+format-muted = <label-muted>
+label-muted = %percentage%%
+label-muted-foreground = ${colors.disabled}
+format-muted-background = ${colors.primary}
+format-muted-padding = 1
+
+click-right = pavucontrol
+click-middle = audio-default-G560-C270.sh
+
+[network-base]
+type = internal/network
+interval = 5
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+label-disconnected = %{F#184c85}%ifname%%{F#707880} disconnected
+
+[module/wlan]
+type = internal/network
+interval = 5
+interface = wlo1
+interface-type = wireless
+
+format-connected = <ramp-signal>
+format-connected-padding = 2
+format-disconnected = <label-disconnected>
+format-disconnected-foreground = ${colors.disabled}
+format-connected-background = ${colors.primary}
+format-disconnected-background = ${colors.primary}
+format-disconnected-padding = 2
+
+label-disconnected = %{T3}%{T-}
+
+ramp-signal-0 = %{T3}%{T-}
+ramp-signal-1 = %{T3}%{T-}
+ramp-signal-2 = %{T3}%{T-}
+ramp-signal-3 = %{T3}%{T-}
+ramp-signal-4 = %{T3}%{T-}
+
+[module/eth]
+inherit = network-base
+interface-type = wired
+label-connected = %{F#184c85}%ifname%%{F-} %local_ip%
+
+; [module/battery]
+; type = internal/battery
+; battery = BAT1
+; adapter = ACAD
+; full-at = 95
+
+; format-charging = <label-charging>
+; format-charging-prefix = %{T3}%{T-}
+; format-charging-prefix-foreground = ${colors.foreground}
+; label-charging = %{T1} %percentage%%%{T-}
+; format-charging-background = ${colors.primary}
+; format-charging-padding = 2
+
+; format-discharging = <label-discharging>
+; format-discharging-prefix = %{T3}%{T-}
+; format-discharging-prefix-foreground = ${colors.foreground}
+; label-discharging = %{T1} %percentage%%%{T-}
+; format-discharging-background = ${colors.primary}
+; format-discharging-padding = 2
+
+; format-full = <label-full>
+; format-full-prefix = %{T3}%{T-}
+; format-full-prefix-foreground = ${colors.foreground}
+; label-full = %{T1}%{T-}
+; format-full-background = ${colors.primary}
+; format-full-padding = 2
+
+[module/date-alt]
+type = custom/script
+exec = TZ=UTC date +" %H:%M"
+interval = 1
+format-prefix = %{T3}%{T-}
+format-prefix-foreground = ${colors.foreground}
+format-foreground = ${colors.foreground}
+format-background = ${colors.primary-alt}
+format-padding = 2
+click-left = yad --calendar --undecorated --fixed --close-on-unfocus --no-buttons --width=222 --height=193 --posy=30 --mouse --on-top --splash --escape-ok --title="yad-calendar" --borders=0 >/dev/null & 
+
+[module/date]
+type = custom/script
+exec = date +"%a %b %d, %H:%M"
+interval = 1
+format-prefix = %{T3} %{T-}
+format-prefix-foreground = ${colors.foreground}
+format-foreground = ${colors.foreground}
+format-background = ${colors.primary-alt}
+format-padding = 2
+click-left = yad --calendar --undecorated --fixed --close-on-unfocus --no-buttons --width=222 --height=193 --posy=30 --mouse --on-top --splash --escape-ok --title="yad-calendar" --borders=0 >/dev/null & 
+
+[module/date-details]
+type = custom/script
+exec = date +"%a %b %d, %H:%M:%S"
+interval = 1
+format-prefix = %{T3} %{T-}
+format-prefix-foreground = ${colors.foreground}
+format-foreground = ${colors.foreground}
+format-background = ${colors.primary-alt}
+format-padding = 2
+click-left = yad --calendar --undecorated --fixed --close-on-unfocus --no-buttons --width=222 --height=193 --posy=30 --mouse --on-top --splash --escape-ok --title="yad-calendar" --borders=0 >/dev/null & 
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+
+label-layout = %layout%
+
+format = <label-indicator>
+format-background = ${colors.primary-alt}
+format-padding = 2
+
+[module/check_update]
+type = custom/script
+exec = polybar-check-updates.py
+interval = 300
+
+label = %output:2%
+
+format-prefix = %{T3} %{T-}
+format-underline = ${colors.primary}
+format-foreground = ${colors.foreground}
+format-background = ${colors.primary}
+format-padding = 1
+click-left = polybar-update-action.sh
+
+[module/now_playing]
+type = custom/script
+exec = polybar-now-playing.py
+tail = true
+
+label = %output%
+
+format-foreground = ${colors.foreground}
+format-padding = 1
+
+[module/powermenu]
+type = custom/text
+content = %{T3}%{T-}
+content-foreground = ${colors.foreground}
+click-left = "jgmenu --simple --csv-file=/home/mukul/.config/jgmenu/powermenu.csv --config-file=/home/mukul/.config/jgmenu/jgmenurc-power"
+content-underline = ${colors.primary}
+content-background = ${colors.primary}
+content-padding = 2
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
+
+; vim:ft=dosini

@@ -1,0 +1,5 @@
+
+Reboot,       confirm-reboot.sh,           system-reboot
+Poweroff,     confirm-poweroff.sh,         system-shutdown
+Windows,      confirm-reboot-windows.sh,   /home/mukul/.icons/Windows_logo_-_2021.svg
+Logout,       confirm-logoff.sh,           system-log-out

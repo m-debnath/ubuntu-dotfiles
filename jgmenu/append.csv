@@ -1,0 +1,18 @@
+^sep()
+Work Stuff,^checkout(workmenu),/home/mukul/.icons/work_icon.png
+^sep()
+Power Menu,^checkout(powermenu),system-shutdown
+
+^tag(workmenu)
+One Cognizant,          google-chrome --new-window https://onecognizant.cognizant.com/,           /home/mukul/.icons/onecognizant.png
+Cognizant Teams,        google-chrome --new-window https://teams.microsoft.com/,           /usr/share/icons/Papirus-Dark/16x16/categories/teams.svg
+Cognizant Webmail,      google-chrome --new-window https://outlook.office365.com/mail/,         /usr/share/icons/Papirus-Dark/symbolic/status/mail-unread-symbolic.svg
+Cognizant Timesheet,    google-chrome --new-window https://compass.esa.cognizant.com/psc/ESA89PRD/EMPLOYEE/ERP/c/ADMINISTER_EXPENSE_FUNCTIONS.CTS_TS_LAND_COMP.GBL,   /usr/share/icons/Papirus-Dark/16x16/panel/dino-status-away.svg
+Cognizant Trutime,     google-chrome --new-window https://onecognizantbcazrapps.cognizant.com/2185/#,           /home/mukul/.icons/fingerprint_icon.png
+Tele2 Webmail,          google-chrome -incognito --new-window https://outlook.office365.com/mail/,           /home/mukul/.icons/T2.png
+
+^tag(powermenu)
+Reboot,       confirm-reboot.sh,           system-reboot
+Poweroff,     confirm-poweroff.sh,         system-shutdown
+Windows,      confirm-reboot-windows.sh,   /home/mukul/.icons/Windows_logo_-_2021.svg
+Logout,       confirm-logoff.sh,           system-log-out

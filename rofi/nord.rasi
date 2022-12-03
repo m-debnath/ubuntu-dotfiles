@@ -1,0 +1,78 @@
+/*
+ * ROFI color theme
+ *
+ * Based on Something Found in the Internet
+ *
+ * User: Mukul Debnath
+ * Copyright: *!
+ */
+
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+
+  bg: #2E3440;
+  bg-alt: #3B4252;
+  fg: #ffffff;
+  fg-alt: #1c8354;
+
+  background-color: @bg;
+  text-color: @fg;
+  selected-normal-foreground: @fg;
+  selected-normal-background: #184c85;
+
+  width: 500px;
+}
+
+window {
+  transparency: "real";
+}
+
+mainbox {
+  children: [inputbar, listview];
+  padding: 10px 10px 0px 10px;
+}
+
+inputbar {
+  background-color: @bg-alt;
+  children: [prompt, entry];
+}
+
+entry {
+  background-color: inherit;
+  padding: 12px 3px;
+}
+
+prompt {
+  background-color: inherit;
+  padding: 12px;
+}
+
+listview {
+  lines: 8;
+  padding: 10px 0px 10px 0px;
+}
+
+element {
+  children: [element-icon, element-text];
+}
+
+element-icon {
+  padding: 10px 10px 10px 10px;
+}
+
+element-text {
+  padding: 10px 0px;
+}
+
+element-text selected {
+  text-color: @selected-normal-foreground;
+  background-color: @selected-normal-background;
+}
+
+element-icon selected {
+  text-color: @selected-normal-foreground;
+  background-color: @selected-normal-background;
+}

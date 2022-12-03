@@ -1,0 +1,208 @@
+#
+# wm independent hotkeys
+#
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+#
+# bspwm hotkeys
+#
+
+# restart bspwm
+super + shift + r
+	bspc wm -r
+
+# quit bspwm
+super + shift + e
+	confirm_logoff.sh
+
+super + alt + r
+	polybar_rofi_options.sh	
+
+# close and kill
+super + {_,shift + }q
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+# super + m
+# 	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+# super + y
+# 	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest window
+super + g
+	bspc node -s biggest.local
+
+#
+# state/flags
+#
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+# super + ctrl + {m,x,y,z}
+# 	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+# super + {p,b,comma,period}
+# 	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous window in the current desktop
+super + {_,shift + }c
+	bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+# super + {o,i}
+# 	bspc wm -h off; \
+# 	bspc node {older,newer} -f; \
+# 	bspc wm -h on
+
+# focus or send to the given desktop
+super + shift + {1-9,0}
+	bspc node -d '^{1-9,10}'
+super + {1-9,0}
+	desktop='^{1-9,10}'; bspc query -D -d "$desktop.focused" && bspc desktop -f last || bspc desktop -f "$desktop"
+
+#
+# preselect
+#
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + {KP_Left,KP_Down,KP_Up,KP_Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + shift + {KP_Left,KP_Down,KP_Up,KP_Right}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# super + KP_{0-9,Divide,Multiply,Subtract,Add,Decimal,Enter,Separator}
+#     notify-send {0-9,Divide,Multiply,Subtract,Add,Decimal,Enter,Separator}
+
+# move a floating window
+super + alt + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# terminal emulator
+# gnome-terminal -e 'sh -c "echo System Info; echo -----------; neofetch; exec zsh"'
+super + Return
+	gnome-terminal
+
+# Rofi
+super + d
+	rofi -show drun
+
+super + r
+	rofi -show run
+
+alt + Tab
+	rofi -show window
+
+# Jgmenu
+super + a
+	jgmenu_run > /dev/null 2>&1 &
+super + l
+	jgmenu --simple --csv-file=/home/mukul/.config/jgmenu/powermenu.csv --config-file=/home/mukul/.config/jgmenu/jgmenurc-power
+
+# Media and volume controls
+XF86AudioRaiseVolume 
+	pulseaudio_volume_control.py INCREASE
+XF86AudioLowerVolume
+	pulseaudio_volume_control.py DECREASE
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+XF86AudioMicMute
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
+XF86AudioPlay
+	playerctl play-pause
+XF86AudioPause
+	playerctl play-pause
+XF86AudioNext
+	playerctl next
+XF86AudioPrev
+	playerctl previous
+
+# System Monitor
+ctrl + shift + Escape
+	gnome-system-monitor
+
+# Browser
+super + b
+	google-chrome
+super + shift + b
+	google-chrome -incognito
+
+# Development
+super + n
+	gedit /home/mukul/Documents/dev.txt
+super + i
+	code --new-window
+
+# File Manager
+super + x
+	nautilus
+
+# Youtube
+super + m
+	google-chrome --new-window https://music.youtube.com/
+super + y
+	google-chrome --new-window https://www.youtube.com/
+
+# Cloudflare WARP
+super + p
+	warp-cli connect && notify-send -i network-wired "(A) Connected" Network
+super + shift + p
+	warp-cli disconnect && sudo systemctl restart systemd-resolved.service
+
+# Screenshot
+Print
+	flameshot gui
+super + Print
+	flameshot launcher
+shift + Print
+	flameshot full
+
+# System Update
+super + u
+	polybar_update_action.sh
