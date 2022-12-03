@@ -17,22 +17,22 @@ In your sxhkdrc( remove these default lines ) :
 Replace the above lines with these :
 
     # i3 like resizing
-    alt + h
+    super + KP_Left
         /bin/sh $HOME/.config/bspwm/resize/shrinkx.sh
-    alt + l
+    super + KP_Right
         /bin/sh $HOME/.config/bspwm/resize/expandx.sh
-    alt + k
+    super + KP_Up
         /bin/sh $HOME/.config/bspwm/resize/shrinky.sh
-    alt + j
+    super + KP_Down
         /bin/sh $HOME/.config/bspwm/resize/expandy.sh
 
 NOTE : Make sure you reload your sxhkd & you don't have to toggle any resize mode in bspwm like i3's. Just start resizing the windows with alt+{h,j,k,l}
 
 ### USAGE :
-alt + h -> Shrink windows horizontally.
+super + KP_Left -> Shrink windows horizontally.
 
-alt + l -> Expand windows horizontally.
+super + KP_Right -> Expand windows horizontally.
 
-alt + k -> Shrink windows vertically.
+super + KP_Up -> Shrink windows vertically.
 
-alt + j -> Expand windows vertically.
+super + KP_Down -> Expand windows vertically.
