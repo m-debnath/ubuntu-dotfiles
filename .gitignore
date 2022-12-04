@@ -32,3 +32,6 @@ update-notifier/**
 user-dirs.dirs
 user-dirs.locale
 yelp/**
+vlc/vlcrc
+UNIGINE/UNIGINE Superposition v1.1.conf
+vlc/vlc-qt-interface.conf
