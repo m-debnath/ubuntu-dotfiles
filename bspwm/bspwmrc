@@ -68,7 +68,7 @@ xset s off &
 xset -dpms &
 
 # Check updates
-check_updates.py &
+check-updates.py &
 
 # Clipboard Manager
 parcellite -d &
