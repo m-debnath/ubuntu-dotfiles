@@ -349,7 +349,7 @@ format-padding = 2
 [module/check_update]
 type = custom/script
 exec = polybar-check-updates.py
-interval = 300
+interval = 1
 
 label = %output:2%
 
