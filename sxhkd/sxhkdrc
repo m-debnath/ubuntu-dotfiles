@@ -219,4 +219,4 @@ shift + Print
 
 # System Update
 super + u
-	polybar_update_action.sh
+	polybar-update-action.sh
