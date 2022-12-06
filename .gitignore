@@ -29,6 +29,7 @@ pulse/**
 QtProject.conf
 systemd/**
 totem/**
+transmission/**
 update-notifier/**
 user-dirs.dirs
 user-dirs.locale
