@@ -2,7 +2,7 @@ configuration {
   font: "SF Pro Display Medium 13px";
 
   drun {
-    display-name: "";
+    display-name: "";
   }
 
   run {
