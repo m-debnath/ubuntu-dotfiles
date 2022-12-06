@@ -189,7 +189,9 @@ super + shift + b
 
 # Development
 super + n
-	gedit /home/mukul/Documents/dev.txt
+	gedit ~/Documents/dev.txt
+super + shift + n
+	flatpak run --command=bottles-cli com.usebottles.bottles run -p notepad++ -b 'Notepad++'
 super + i
 	code --new-window
 
