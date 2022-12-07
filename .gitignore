@@ -14,6 +14,7 @@ gnome-session/**
 goa-1.0/**
 google-chrome/**
 .gsd-keyboard.settings-ported
+gtk-2.0/**
 gtk-3.0/**
 gtk-4.0/**
 htop/**
@@ -37,3 +38,4 @@ yelp/**
 vlc/vlcrc
 UNIGINE/UNIGINE Superposition v1.1.conf
 vlc/vlc-qt-interface.conf
+Webcamoid/**
