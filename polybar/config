@@ -57,7 +57,7 @@ font-6 = "Ubuntu Nerd Font:style=Regular:size=10;2"
 
 modules-left = jgmenu sep sep xworkspaces sep sep xwindowicon
 modules-center = now_playing
-modules-right = xkeyboard sep sep sep-primary cpu gpu-usage memory filesystem homefilesystem check_update sep-primary sep sep date sep sep sep-primary pulseaudio mic-con parcellite warp-con wlan powermenu
+modules-right = xkeyboard sep sep check_update sep sep date sep sep sep-primary pulseaudio mic-con parcellite warp-con wlan powermenu
 
 cursor-click = pointer
 cursor-scroll = ns-resize
