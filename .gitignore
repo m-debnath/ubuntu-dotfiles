@@ -9,6 +9,7 @@ gedit/**
 gh/**
 GIMP/**
 ..gitignore.swp
+gnome-games/**
 gnome-initial-setup-done
 gnome-session/**
 goa-1.0/**
