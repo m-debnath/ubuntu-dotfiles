@@ -46,7 +46,8 @@ picom -b &
 /usr/libexec/gsd-xsettings &
 
 # Wallpaper
-feh --bg-fill /home/mukul/Pictures/Wallpapers/Dark_Mode_green_blue.jpg &
+# feh --bg-fill /home/mukul/Pictures/Wallpapers/Dark_Mode_green_blue.jpg &
+nitrogen --restore &
 
 # Polybar
 $HOME/.config/polybar/launch.sh &
