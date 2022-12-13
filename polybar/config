@@ -157,7 +157,7 @@ format-padding = 2
 type = internal/cpu
 interval = 1
 warn-percentage = 95
-format-prefix = %{T3}%{T-}
+format-prefix = %{T3} %{T-}
 label = %percentage:3%%
 format-background = ${colors.primary}
 format-padding = 1
@@ -351,9 +351,9 @@ type = custom/script
 exec = polybar-check-updates.py
 interval = 1
 
-label = %output:2%
+label = "%output:2% "
 
-format-prefix = %{T3} %{T-}
+format-prefix = %{T3}  %{T-}
 format-underline = ${colors.primary}
 format-foreground = ${colors.foreground}
 format-background = ${colors.primary}
