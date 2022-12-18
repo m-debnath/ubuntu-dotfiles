@@ -1,4 +1,6 @@
 autostart/**
+arduino-ide/**
+Arduino IDE/**
 Code/**
 dconf/**
 enchant/**
