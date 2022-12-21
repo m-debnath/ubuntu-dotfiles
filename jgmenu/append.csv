@@ -12,6 +12,7 @@ Cognizant Trutime,     google-chrome --new-window https://onecognizantbcazrapps.
 Tele2 Webmail,          google-chrome -incognito --new-window https://outlook.office365.com/mail/,           /home/mukul/.icons/T2.png
 
 ^tag(powermenu)
+Suspend,      confirm-suspend.sh,          preferences-desktop-screensaver
 Reboot,       confirm-reboot.sh,           system-reboot
 Poweroff,     confirm-poweroff.sh,         system-shutdown
 Windows,      confirm-reboot-windows.sh,   /home/mukul/.icons/Windows_logo_-_2021.svg
