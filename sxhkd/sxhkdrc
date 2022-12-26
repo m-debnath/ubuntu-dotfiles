@@ -222,3 +222,11 @@ shift + Print
 # System Update
 super + u
 	polybar-update-action.sh
+
+# Numlock notification
+Num_Lock
+	sleep 0.1 && status-numlock.sh
+
+# Capslock notification
+Caps_Lock
+	sleep 0.1 && status-capslock.sh
