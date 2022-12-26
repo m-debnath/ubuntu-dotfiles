@@ -31,6 +31,7 @@ parcellite/**
 pavucontrol.ini
 pulse/**
 QtProject.conf
+remmina/**
 systemd/**
 totem/**
 transmission/**
