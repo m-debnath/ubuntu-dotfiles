@@ -73,7 +73,9 @@
     # Draw a line of "separator_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
-    separator_height = 1
+    separator_height = 10
+    separator_color = "#00000000"
+
 
     # Padding between text and separator.
     padding = 8
@@ -89,7 +91,7 @@
     frame_width = 1
 
     # Defines color of the frame around the notification window.
-    frame_color = "#007ACC"
+    frame_color = "#007ACC00"
 
     # Define a color for the separator.
     # possible values are:
@@ -308,7 +310,7 @@
 [urgency_critical]
     background = "#184c85"
     foreground = "#ffffff"
-    frame_color = "#184c85"
+    # frame_color = "#184c85"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     #new_icon = /path/to/icon
