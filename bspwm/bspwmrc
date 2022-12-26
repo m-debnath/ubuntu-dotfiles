@@ -30,6 +30,7 @@ bspc rule -a Pavucontrol state=floating follow=on center=true
 bspc rule -a Gnome-power-statistics state=floating follow=on center=true
 bspc rule -a Yad state=floating follow=on
 bspc rule -a Software-properties-gtk state=floating follow=on center=true
+bspc rule -a Gufw.py state=floating follow=on center=true
 bspc rule -a Totem state=floating follow=on center=true rectangle=1600x900+0+0
 bspc rule -a Shotwell state=floating follow=on center=true rectangle=1600x900+0+0
 
